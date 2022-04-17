@@ -24,7 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+DEBUG = False
 
+if DEBUG == False:
+    SECRET_KEY = os.environ['SECRET_KEY']
+    import django_heroku
+    django_heroku.settings(locals())
 # Application definition
 
 INSTALLED_APPS = [
@@ -87,6 +92,9 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -141,6 +149,11 @@ MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')
 # herokuの設定
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 ALLOWED_HOSTS = ['*']
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
