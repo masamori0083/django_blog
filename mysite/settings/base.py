@@ -26,10 +26,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(
 
 DEBUG = False
 
-if DEBUG == False:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    import django_heroku
-    django_heroku.settings(locals())
 # Application definition
 
 INSTALLED_APPS = [
