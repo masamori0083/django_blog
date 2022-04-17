@@ -24,7 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-DEBUG = False
 
 # Application definition
 
@@ -141,17 +140,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 # 3rdパーティライブラリの設定
 MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')
-
-# herokuの設定
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
-ALLOWED_HOSTS = ['*']
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
-if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    import django_heroku
-    django_heroku.settings(locals())
