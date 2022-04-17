@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+{% load blog %}
+
+
+{% block meta_title %}
+	{{heading}} - {{block.super}}
+{% endblock meta_title %}
+	
+
+{% block content %}
+	<section id="diary-list" class="container">
+		<h1 class="section-title">{{heading}}</h1>
+
+		
+		{% for diary in object_list %}
+			<article class="diary">
+				<!-- 日記一覧ページの各日記をクリックすると、詳細ページに移動 -->
+				<a href="{% url 'blog:detail' diary.pk %}">
+					<h2 class="diary-title">{{diary.title}}</h2>
+					<p class="meta">
+						<time datetime="{{diary.created_at | date:'Y-m-d'}}">{{diary.created_at | date:'Y年n月j日'}}</time>
+						-
+						{{diary.category}}
+					</p>
+					<div class="contents">
+						<p>
+							{{diary.text | markdown_to_html| truncatechars:50}}
+						</p>
+					</div>
+				</a>
+			</article>
+
+		{% empty %}
+			<p>記事が見つかりませんでした</p>
+		{% endfor %}
+			
+		<nav id="page">
+			<!-- １つ前の部分 -->
+			
+			{% if page_obj.has_previous %}
+				<a id="prev" href="?{% url_replace request 'page' page_obj.previous_page_number %}" title="前ページへ">before</a>
+			{% endif %}
+			<span id="page-info">{{ page_obj.number }} / {{ page_obj.pagenator.num_pages }}</span>
+
+				<!-- １つ後の部分 -->
+				
+			{% if page_obj.has_next %}
+				<a id="next" href="?{% url_replace request 'page' page_obj.next_page_number %}" title="次ページへ">next</a>
+			{% endif %}
+					
+		</nav>
+	</section>
+
+{% endblock content %}

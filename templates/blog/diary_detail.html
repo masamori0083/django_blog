@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% load blog %}
+
+
+{% block meta_title %}
+	{{diary.title}} - {{block.super}}
+{% endblock meta_title %}
+
+{% block meta_description %}{% endblock meta_description %}	
+
+
+{% block content %}
+	<section id="diary-detail" class=""container>
+		<nav class="back"><a href="{% get_return_link request%}">back</a></nav>
+		<article class="diary">
+			<h1 class="diary-title">{{diary.title}}</h1>
+			<p class="meta">
+				<time datetime="{{ diary.created_at | date:'Y-m-d' }}">{{ diary.created_at | date:'Y年n月j日' }}</time>
+				-
+				{{ diary.category }}
+			</p>
+			<div class="contents text-left">
+				<!-- 記事本文を整えるためのテンプレートタグ -->
+				{{ diary.text | markdown_to_html | linebreaks | urlize }}
+			</div>
+		</article>
+	</section>
+{% endblock content %}
+	

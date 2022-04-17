@@ -1,0 +1,16 @@
+<!-- querysetをyearごとにまとめるタグ -->
+{% regroup dates by year as dates_by_year %}
+<ul>
+	{% for month in dates_by_year %}
+	<!-- 年部分のリンク -->
+		<li><a href="{% url 'blog:year' month.grouper %}">{{ month.grouper }}年</a>
+			<ul>
+				{% for d in month.list %}
+				<!-- 月部分のリンク　 -->
+					<li><a href="{% url 'blog:month' month.grouper d.month %}">{{ d | date:'F' }}</a></li>
+				{% endfor %}
+			</ul>
+		</li>
+	{% endfor %}
+		
+</ul>

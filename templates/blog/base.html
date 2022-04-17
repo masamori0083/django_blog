@@ -1,0 +1,45 @@
+{% load static %}
+{% load blog %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>masablog</title>
+	<link rel="stylesheet" href="{% static 'blog/style.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,400&display=swap" rel="stylesheet">
+</head>
+<body>
+<header id="site-header">
+	<a href="/">
+		<img src="" alt="">
+		<p id="title">masamoriDiary</p>
+		<p id="subtitle">ポートフォリオ用の自作ブログ</p>
+	</a>
+</header>
+
+
+{% block content %}
+	
+{% endblock content %}
+	
+<footer id="site-footer">
+	<div class="container" id="footer-container">
+
+{% render_month_links %}
+
+{% render_category_links %}
+
+		<ul>
+			<li><a href="https://twitter.com/masamori0083">twitter</a></li>
+			<li><a href="https://github.com/masamori0083">github</a></li>
+		</ul>
+
+{% render_search_form request %}
+	</div>
+</footer>
+
+</body>
+</html>

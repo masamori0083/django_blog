@@ -1,0 +1,266 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+}
+
+html {
+	background-color:#fef4f4;
+}
+
+body {
+	line-height:1;
+	font-family: "Noto Sans JP", sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	color:#333;
+}
+
+@media(min-width: 768px) {
+	body {
+		font-size: 16px;
+	}
+}
+
+a:hover {
+	opacity: 0.5;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+
+/* ヘッダー */
+
+#site-header {
+	padding: 100px 0;
+	text-align: center;
+	background-color:#2a4073;
+	color: #fff;
+}
+
+p#title {
+	font-size:40px;
+	color: #fff;
+	margin: 16px 0;
+}
+
+p#subtitle {
+	color: #fff;
+}
+
+imge#hero {
+	width:200px;
+}
+
+li {
+	margin: 0.5em 0;
+}
+
+header > a {
+	text-decoration: none;
+}
+
+/* ユーティリティー */
+
+.container {
+	padding: 0 8px;
+}
+
+@media (min-width: 1024px) {
+	.container {
+		padding: 0 32px;
+		box-sizing: border-box;
+		width: 1024px;
+		margin: 0 auto;
+	}
+}
+
+@media (min-width:1366px) {
+	.container {
+		width: 1366px;
+	}
+}
+
+/* フッター */
+#site-footer {
+	padding: 32px 0;
+	background-color:#2a4073;
+}
+
+#site-footer ul {
+	list-style-type: none;
+}
+#site-footer a {
+	color: #fff;
+}
+
+#site-footer a:hover {
+	opacity: 0.5;
+}
+#footer-container > * {
+	margin-bottom: 32px;
+}
+
+#footer-container > ul {
+	padding: 0;
+}
+
+@media (min-width:1024px) {
+	#footer-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+}
+
+/* 検索ボックス */
+input[type=text] {
+	width: 100%;
+	font-family: "Noto Sans JP", sans-serif;
+	padding: 4px 8px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	border: solid 1px #fff;
+}
+
+/* 虫眼鏡マーク */
+
+.field {
+	width: 100%;
+	position: relative;
+}
+
+.search-btn {
+	position: absolute;
+	width: 43px;
+	height: 32px;
+	top: calc(50% -19px);
+	right: 0;
+	border: none;
+	background: transparent;
+}
+
+.search-btn::before {
+	position: absolute;
+	content: '';
+	width: 15px;
+	height: 15px;
+	top: calc(50% - 9px);
+	left: calc(50% - 9px);
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px #2a4073;
+}
+
+.search-btn::after {
+	position: absolute;
+	content: '';
+	width: 8px;
+	height: 6px;
+	top: calc(50% + 6px);
+	left: calc(50% + 2px);
+	border-top: solid 2px #2a4073;
+	transform: rotate(45deg);
+}
+
+/* 日記エリア */
+.diary {
+	background-color:#fff;
+	padding: 32px;
+	box-sizing: border-box;
+	text-align: center;
+	margin-bottom: 32px;
+	border-radius: 20px;
+}
+
+.diary > a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+
+.diary > a:hover {
+	overflow: hidden;
+	transform: scale(1.1);
+	transition-duration: 1s;
+}
+
+.diary-title {
+	margin-bottom: 16px;
+	font-size: 22px;
+	color: #333;
+	font-weight: bold;
+}
+
+.meta {
+	margin-bottom:32px;
+	color: #999;
+	font-size:14px;
+}
+
+.contents > p {
+	color: #333;
+	line-height: 2;
+	margin-bottom: 2em;
+}
+
+/* メインコンテンツ タブレット横向き以上 */
+@media (min-width:1024px) {
+	#diary-list {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 32px;
+		column-gap: 32px;
+	}
+
+	#diary-list > * {
+		grid-column: 1/-1;
+	}
+
+	#diary-list > article {
+		grid-column: auto;
+	}
+
+	#diary-detail {
+		width: 600px;
+		margin: 0 auto;
+		padding: 0;
+	}
+}
+
+/* メインコンテンツ */
+@media (min-width:1366px) {
+	#diary-list {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+/* youtube埋め込み動画用 */
+iframe {
+	width: 100%;
+}
+
+.text-left {
+	text-align: left;
+}
+
+
+/* .backを追加 */
+
+.section-title, .back {
+	font-weight: 300;
+	font-size: 16px;
+	padding: 16px 0;
+}
+
+/* ナビゲーション設定 */
+nav#page {
+	margin-top: -16px;
+	margin-bottom: 16px;
+}
+
+nav#page > * {
+	margin-right: 20px;
+}
