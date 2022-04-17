@@ -83,7 +83,6 @@ requests-unixsocket==0.2.0
 scikit-learn==0.22
 scipy==1.7.1
 Send2Trash==1.8.0
-setuptools==47.1.1.post20200604
 six==1.16.0
 sniffio==1.2.0
 soupsieve==2.2.1
