@@ -10,7 +10,9 @@ from .models import Diary, Category
 from django.db.models import Q
 from .forms import DiarySearchForm
 from django.conf import settings
-from django.http.response import JsonResponse
+
+from django.views.decorators.csrf import requires_csrf_token
+from django.http import HttpResponseServerError
 
 # Create your views here.
 
@@ -115,3 +117,14 @@ class DiarySearchList(ArchiveListMixin, generic.ArchiveIndexView):
         context = super().get_context_data(**kwargs)
         context["heading"] = f"「{self.key_word}」の検索結果"
         return context
+
+
+@requires_csrf_token
+def my_customized_server_error(request, template_name='500.html'):
+    """
+    herokuでもエラー画面を見れるようにする
+    """
+    import sys
+    from django.views import debug
+    error_html = debug.technical_500_response(request, *sys.exc_info()).content
+    return HttpResponseServerError(error_html)

@@ -1,3 +1,4 @@
+from cgitb import handler
 from django.views import generic
 from django.urls import path
 from . import views
@@ -14,3 +15,6 @@ urlpatterns = [
          views.DiaryMonthList.as_view(), name="month"),
     path('search/', views.DiarySearchList.as_view(), name="search"),
 ]
+
+
+handler500 = views.my_customized_server_error
