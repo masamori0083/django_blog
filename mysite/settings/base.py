@@ -14,19 +14,19 @@ from datetime import datetime
 from distutils.debug import DEBUG
 from pathlib import Path
 import cloudinary
-import dj_database_url
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__))))
+# Build paths
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+PROJECT_NAME = os.path.basename(BASE_DIR)
+
+# Security
+
+DEBUG = False
+ALLOWED_HOSTS = []
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-
-# Application definition
+# Core Settings
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
@@ -35,22 +35,15 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
 
     # my app
     'blog.apps.BlogConfig',
-    # static
 
     # 3rd party apps
     'markdownx',
-
     'cloudinary_storage',
-    'django.contrib.staticfiles',
-    # この下をコメントアウトしないと'cloudinaryblog'となってしまう
     'cloudinary'
-
-
-
-
 ]
 
 MIDDLEWARE = [
@@ -85,23 +78,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'name',
-        'USER': 'user',
-        'PASSWORD': '',
-        'HOST': 'host',
-        'PORT': '',
-    }
-}
-
-
 # Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -118,9 +95,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Database
+DATABASE = {}
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'ja'
 
@@ -134,16 +112,11 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = f'/var/www/{PROJECT_NAME}/static'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-X_FRAME_OPTIONS = 'SAMEORIGIN'
-
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media'),
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
