@@ -1,13 +1,16 @@
+import os
 from multiprocessing import context
 from unicodedata import category
 from django.shortcuts import render
 from django.http import Http404
 from django.utils import timezone
-from django.views import generic
+from django.views import View, generic
 from django.shortcuts import get_object_or_404
 from .models import Diary, Category
 from django.db.models import Q
 from .forms import DiarySearchForm
+from django.conf import settings
+from django.http.response import JsonResponse
 
 # Create your views here.
 

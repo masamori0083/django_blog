@@ -35,7 +35,7 @@ class Diary(models.Model):
     title = models.CharField('タイトル', max_length=32)
     # thumbnail = models.ImageField('サムネイル')
     # 日記投稿はマークダウン対応
-    text = MarkdownxField('本文')
+    text = MarkdownxField('本文', help_text='Markdown形式で書いてください')
     # on_deleteは紐づけられたオブジェクトも一緒に消すのかどうか、という設定をする
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, verbose_name='カテゴリ')

@@ -12,5 +12,5 @@ urlpatterns = [
     path('archive/<int:year>/', views.DiaryYearList.as_view(), name="year"),
     path('archive/<int:year>/<int:month>',
          views.DiaryMonthList.as_view(), name="month"),
-    path('search/', views.DiarySearchList.as_view(), name="search")
+    path('search/', views.DiarySearchList.as_view(), name="search"),
 ]

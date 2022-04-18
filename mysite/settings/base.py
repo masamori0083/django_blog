@@ -34,11 +34,22 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+
     # my app
     'blog.apps.BlogConfig',
+    # static
+
     # 3rd party apps
     'markdownx',
+
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    # この下をコメントアウトしないと'cloudinaryblog'となってしまう
+    'cloudinary'
+
+
+
+
 ]
 
 MIDDLEWARE = [
@@ -87,9 +98,6 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -136,7 +144,5 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
-
-# 3rdパーティライブラリの設定
-MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media'),
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
