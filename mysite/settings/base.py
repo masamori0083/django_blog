@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from datetime import datetime
 from distutils.debug import DEBUG
 from pathlib import Path
+import cloudinary
 import dj_database_url
 import os
 
@@ -145,4 +146,4 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media'),
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

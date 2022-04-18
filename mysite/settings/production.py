@@ -15,8 +15,8 @@ ALLOWED_HOSTS = ['*']
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
-# cloudinary.config(
-#     cloud_name='dfknwzkbh',
-#     api_key=os.environ.get('CLOUDINARY_API_KEY'),
-#     api_secret=os.environ.get('CLOUDINARY_API_SECRET')
-# )
+cloudinary.config(
+    cloud_name='dfknwzkbh',
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET')
+)

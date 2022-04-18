@@ -21,7 +21,7 @@
 			</p>
 			<div class="contents text-left">
 				<!-- 記事本文を整えるためのテンプレートタグ -->
-				{{ diary.text | linebreaks | urlize2 | markdown_to_html }}
+				{{ diary.text | markdown_to_html  | linebreaks | urlize2 }}
 			</div>
 		</article>
 	</section>
